@@ -416,7 +416,7 @@
   }
   /* ---------- образцы ---------- */
   .spec{display:grid;gap:clamp(40px,6vh,72px);}
-  .spec__item{display:grid;gap:18px;}
+  .spec__item{display:grid;grid-template-columns:minmax(0,1fr);gap:18px;}
   @media (min-width:900px){
     .spec__item--wide{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);align-items:start;gap:clamp(32px,4vw,64px);}
     .spec__item--flip{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);}
@@ -428,6 +428,7 @@
 
   .demo{
     position:relative;
+    min-width:0;overflow:hidden;
     border:1px solid var(--rule);
     background:
       radial-gradient(380px circle at var(--hx, 50%) var(--hy, 50%), rgba(93,123,255,.11), transparent 65%),
@@ -444,14 +445,34 @@
   .demo__hint{font-size:.82rem;color:var(--graphite);margin-top:14px;}
 
   .resizer{
+    position:relative;
     container-type:inline-size;
-    resize:horizontal;overflow:auto;
-    width:100%;min-width:230px;max-width:100%;
+    width:270px;min-width:180px;max-width:100%;
     border:1px dashed var(--rule);padding:14px;background:var(--plate-2);
+    touch-action:none;
   }
+  .resizer__grip{
+    position:absolute;top:0;right:0;bottom:0;width:16px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
+    cursor:ew-resize;touch-action:none;
+  }
+  .resizer__grip span{width:2px;height:12px;border-radius:2px;background:var(--blue);opacity:.6;}
+  .resizer__grip:focus-visible{outline:2px solid var(--blue-bright);outline-offset:2px;}
+  .resizer__presets{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
+  .resizer__presets button{
+    font:inherit;font-size:.8rem;line-height:1;padding:8px 12px;cursor:pointer;
+    background:var(--plate-2);color:var(--graphite);border:1px solid var(--rule);border-radius:0;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .resizer__presets button:hover,
+  .resizer__presets button:focus-visible{border-color:var(--blue);color:var(--ink);}
+  .resizer__presets button[aria-pressed="true"]{
+    border-color:var(--blue);color:var(--blue-bright);font-variation-settings:'wght' 700;
+  }
+  :root[data-theme="light"] .resizer__presets button[aria-pressed="true"]{color:var(--blue);}
   .rgrid{display:grid;gap:8px;grid-template-columns:1fr;}
-  @container (min-width:420px){.rgrid{grid-template-columns:repeat(2,1fr);}}
-  @container (min-width:680px){.rgrid{grid-template-columns:repeat(3,1fr);}}
+  @container (min-width:200px){.rgrid{grid-template-columns:repeat(2,1fr);}}
+  @container (min-width:400px){.rgrid{grid-template-columns:repeat(3,1fr);}}
   .rgrid div{height:44px;background:rgba(93,123,255,.16);border:1px solid rgba(93,123,255,.38);}
   :root[data-theme="light"] .rgrid div{background:rgba(32,54,201,.1);border:1px solid rgba(32,54,201,.28);}
   .readout{
@@ -548,8 +569,8 @@
 
   /* ---------- вопросы ---------- */
   .qa__lead{margin-bottom:clamp(22px,3.5vh,36px);color:var(--graphite);max-width:62ch;}
-  .qa__type-wrap{color:var(--ink);font-variation-settings:'wght' 600;}
-  .text-type{position:relative;display:inline-block;white-space:pre-wrap;}
+  .qa__type-wrap{display:inline-block;min-width:13em;color:var(--ink);font-variation-settings:'wght' 600;}
+  .text-type{position:relative;display:inline-block;white-space:nowrap;}
   .text-type__sr{
     position:absolute;width:1px;height:1px;padding:0;margin:-1px;
     overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;
@@ -822,14 +843,22 @@
       <article class="spec__item spec__item--wide" data-ac data-ac-distance="48" data-ac-blur="4">
         <div class="spec__text">
           <h3 class="spec__name"><svg class="ic" aria-hidden="true"><use href="#i-widget"/></svg>Резиновая сетка</h3>
-          <p>Потяните правый край рамки. Колонок станет столько, сколько нужно этому размеру, а не сколько было нарисовано в макете.</p>
+          <p>Потяните правый край рамки или выберите размер кнопкой. Колонок станет столько, сколько нужно этому размеру, а не сколько было нарисовано в макете.</p>
         </div>
         <div class="demo">
           <div class="resizer" id="resizer">
             <div class="rgrid"><div></div><div></div><div></div><div></div><div></div><div></div></div>
+            <div class="resizer__grip js-only" id="resizerGrip" role="slider" tabindex="0"
+                 aria-label="Ширина рамки" aria-valuemin="180" aria-valuemax="600" aria-valuenow="270"><span></span><span></span><span></span></div>
+          </div>
+          <div class="resizer__presets js-only" role="group" aria-label="Ширина рамки">
+            <button type="button" data-w="200">Узко</button>
+            <button type="button" data-w="300">Средне</button>
+            <button type="button" data-w="460">Широко</button>
           </div>
           <div class="readout"><span>Ширина <b id="rw">—</b></span><span>Колонок <b id="rc">—</b></span></div>
-          <p class="demo__hint">Тяните за правый нижний угол рамки.</p>
+          <p class="demo__hint">Тяните за правый край рамки или нажмите кнопку размера.</p>
+          <noscript><p class="demo__hint">Без JavaScript рамка статична — остальная страница работает.</p></noscript>
         </div>
       </article>
 
@@ -1076,15 +1105,57 @@
 
   /* резиновая сетка */
   var box = document.getElementById('resizer');
+  var grip = document.getElementById('resizerGrip');
   var rw = document.getElementById('rw');
   var rc = document.getElementById('rc');
+  var presets = Array.prototype.slice.call(document.querySelectorAll('.resizer__presets button'));
+  var MINW = 180, MAXW = 600;
+  function colsFor(w){ return w >= 430 ? 3 : w >= 230 ? 2 : 1; }
+  function setWidth(w){
+    var max = Math.min(MAXW, box.parentElement.clientWidth);
+    w = Math.max(MINW, Math.min(max, Math.round(w)));
+    box.style.width = w + 'px';
+    measure();
+  }
   function measure(){
     var w = Math.round(box.clientWidth);
     rw.textContent = w + ' px';
-    rc.textContent = w >= 680 ? 3 : w >= 420 ? 2 : 1;
+    rc.textContent = colsFor(w);
+    if (grip){
+      grip.setAttribute('aria-valuenow', w);
+      grip.setAttribute('aria-valuemax', Math.min(MAXW, box.parentElement.clientWidth));
+    }
+    presets.forEach(function(b){ b.setAttribute('aria-pressed', Math.abs(parseInt(b.getAttribute('data-w'),10) - w) <= 6 ? 'true' : 'false'); });
   }
   if (window.ResizeObserver){ new ResizeObserver(measure).observe(box); }
   else { window.addEventListener('resize', measure); }
+
+  if (grip){
+    grip.addEventListener('pointerdown', function(e){
+      if (reduce.matches) return;
+      var startX = e.clientX, startW = box.clientWidth;
+      function move(ev){ setWidth(startW + (ev.clientX - startX)); }
+      function end(){
+        window.removeEventListener('pointermove', move);
+        window.removeEventListener('pointerup', end);
+        window.removeEventListener('pointercancel', end);
+      }
+      window.addEventListener('pointermove', move);
+      window.addEventListener('pointerup', end);
+      window.addEventListener('pointercancel', end);
+      e.preventDefault();
+    });
+    grip.addEventListener('keydown', function(e){
+      var step = e.shiftKey ? 40 : 10, w = box.clientWidth;
+      if (e.key === 'ArrowRight'){ setWidth(w + step); e.preventDefault(); }
+      else if (e.key === 'ArrowLeft'){ setWidth(w - step); e.preventDefault(); }
+      else if (e.key === 'Home'){ setWidth(MINW); e.preventDefault(); }
+      else if (e.key === 'End'){ setWidth(Math.min(MAXW, box.parentElement.clientWidth)); e.preventDefault(); }
+    });
+  }
+  presets.forEach(function(b){
+    b.addEventListener('click', function(){ setWidth(parseInt(b.getAttribute('data-w'), 10)); });
+  });
   measure();
 
   /* проверка адреса */

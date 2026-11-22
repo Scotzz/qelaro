@@ -132,7 +132,7 @@
     overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;
   }
 
-  /* иконки Solar (linear), встроенный спрайт — внешних запросов нет */
+  /* иконки Solar (linear) + GitHub (MDI), встроенный спрайт — внешних запросов нет */
   .ic{width:1em;height:1em;flex:none;display:inline-block;vertical-align:-.125em;}
 
   /* ---------- полоса прогресса ---------- */
@@ -675,7 +675,8 @@
 </head>
 <body>
 <!-- Иконки: Solar Linear, автор 480 Design, лицензия CC BY 4.0
-     https://creativecommons.org/licenses/by/4.0/ — встроены спрайтом, без внешних запросов -->
+     https://creativecommons.org/licenses/by/4.0/; иконка GitHub — Material Design Icons, Apache-2.0.
+     Встроены спрайтом, без внешних запросов -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
     <symbol id="i-letter" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path d="M10 20H14C17.7712 20 19.6569 20 20.8284 18.8284C22 17.6569 22 15.7712 22 12C22 8.22876 22 6.34315 20.8284 5.17157C19.6569 4 17.7712 4 14 4H10C6.22876 4 4.34315 4 3.17157 5.17157C2 6.34315 2 8.22876 2 12C2 15.7712 2 17.6569 3.17157 18.8284C4.34315 20 6.22876 20 10 20Z"/><path d="M6 8L8.1589 9.79908C9.99553 11.3296 10.9139 12.0949 12 12.0949C13.0861 12.0949 14.0045 11.3296 15.8411 9.79908L18 8"/></g></symbol>
@@ -694,6 +695,7 @@
     <symbol id="i-chart" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="M3 22H21"/><path d="M5 19C4.05719 19 3.58579 19 3.29289 18.7071C3 18.4142 3 17.9428 3 17V11C3 10.0572 3 9.58579 3.29289 9.29289C3.58579 9 4.05719 9 5 9C5.94281 9 6.41421 9 6.70711 9.29289C7 9.58579 7 10.0572 7 11V17C7 17.9428 7 18.4142 6.70711 18.7071C6.41421 19 5.94281 19 5 19Z"/><path d="M12 19C11.0572 19 10.5858 19 10.2929 18.7071C10 18.4142 10 17.9428 10 17V7C10 6.05719 10 5.58579 10.2929 5.29289C10.5858 5 11.0572 5 12 5C12.9428 5 13.4142 5 13.7071 5.29289C14 5.58579 14 6.05719 14 7V17C14 17.9428 14 18.4142 13.7071 18.7071C13.4142 19 12.9428 19 12 19Z"/><path d="M19 19C18.0572 19 17.5858 19 17.2929 18.7071C17 18.4142 17 17.9428 17 17V4C17 3.05719 17 2.58579 17.2929 2.29289C17.5858 2 18.0572 2 19 2C19.9428 2 20.4142 2 20.7071 2.29289C21 2.58579 21 3.05719 21 4V17C21 17.9428 21 18.4142 20.7071 18.7071C20.4142 19 19.9428 19 19 19Z"/></g></symbol>
     <symbol id="i-phone" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round"><path stroke-width="1.5" d="M12 22C8.22876 22 6.34315 22 5.17157 20.8284C4 19.6569 4 17.7712 4 14V10C4 6.22876 4 4.34315 5.17157 3.17157C6.34315 2 8.22876 2 12 2C15.7712 2 17.6569 2 18.8284 3.17157C20 4.34315 20 6.22876 20 10V14C20 17.7712 20 19.6569 18.8284 20.8284C17.6569 22 15.7712 22 12 22Z"/><path stroke-width="1.5" d="M15 5H9"/><circle cx="12" cy="19" r="1"/></g></symbol>
     <symbol id="i-code" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path d="M16 11L17.6965 12.5268C19.239 13.9151 20.0103 14.6093 20.0103 15.5C20.0103 16.3907 19.239 17.0849 17.6965 18.4732L16 20"/><path d="M13.9863 5L11.9929 12.5L9.99951 20"/><path d="M7.99956 4.82959L6.30309 6.35641C4.76054 7.74471 3.98926 8.43886 3.98926 9.32959C3.98926 10.2203 4.76054 10.9145 6.30309 12.3028L7.99956 13.8296"/></g></symbol>
+    <symbol id="i-github" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5c.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34c-.46-1.16-1.11-1.47-1.11-1.47c-.91-.62.07-.6.07-.6c1 .07 1.53 1.03 1.53 1.03c.87 1.52 2.34 1.07 2.91.83c.09-.65.35-1.09.63-1.34c-2.22-.25-4.55-1.11-4.55-4.92c0-1.11.38-2 1.03-2.71c-.1-.25-.45-1.29.1-2.64c0 0 .84-.27 2.75 1.02c.79-.22 1.65-.33 2.5-.33s1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02c.55 1.35.2 2.39.1 2.64c.65.71 1.03 1.6 1.03 2.71c0 3.82-2.34 4.66-4.57 4.91c.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2"/></symbol>
     <symbol id="i-sun" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><circle cx="12" cy="12" r="4"/><path d="M12 2V4M12 20V22M4 12H2M22 12H20M19.071 4.929L17.657 6.343M6.343 17.657L4.929 19.071M19.071 19.071L17.657 17.657M6.343 6.343L4.929 4.929"/></g></symbol>
     <symbol id="i-moon" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79Z"/></symbol>
   </defs>
@@ -750,6 +752,10 @@
           <div class="crow">
             <a href="https://t.me/paranoyaa" target="_blank" rel="noopener"><span><svg class="ic" aria-hidden="true"><use href="#i-chat"/></svg>Телеграм</span><b>@paranoyaa</b></a>
             <button class="copybtn js-only" type="button" data-copy="@paranoyaa" data-msg="Телеграм скопирован." data-label="Скопировать телеграм" data-label-ok="Скопировано" aria-label="Скопировать телеграм"><svg class="ic" aria-hidden="true"><use href="#i-copy"/></svg></button>
+          </div>
+          <div class="crow">
+            <a href="https://github.com/Scotzz" target="_blank" rel="noopener"><span><svg class="ic" aria-hidden="true"><use href="#i-github"/></svg>GitHub</span><b>@Scotzz</b></a>
+            <button class="copybtn js-only" type="button" data-copy="https://github.com/Scotzz" data-msg="Ссылка на GitHub скопирована." data-label="Скопировать GitHub" data-label-ok="Скопировано" aria-label="Скопировать ссылку на GitHub"><svg class="ic" aria-hidden="true"><use href="#i-copy"/></svg></button>
           </div>
         </div>
       </div>
@@ -984,6 +990,10 @@
         <a href="https://t.me/paranoyaa" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-chat"/></svg>@paranoyaa</a>
         <button class="copybtn js-only" type="button" data-copy="@paranoyaa" data-msg="Телеграм скопирован." data-label="Скопировать телеграм" data-label-ok="Скопировано" aria-label="Скопировать телеграм"><svg class="ic" aria-hidden="true"><use href="#i-copy"/></svg></button>
       </div>
+      <div class="end__row">
+        <a href="https://github.com/Scotzz" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-github"/></svg>@Scotzz</a>
+        <button class="copybtn js-only" type="button" data-copy="https://github.com/Scotzz" data-msg="Ссылка на GitHub скопирована." data-label="Скопировать GitHub" data-label-ok="Скопировано" aria-label="Скопировать ссылку на GitHub"><svg class="ic" aria-hidden="true"><use href="#i-copy"/></svg></button>
+      </div>
     </div>
     <p class="end__time js-only"><i class="pulse" aria-hidden="true"></i>Ваше время <span id="clock">--:--</span>. Пишите, когда удобно.</p>
   </section>
@@ -994,7 +1004,7 @@
   <footer>
     <div class="foot__col">
       <span>Qelaro — сайты, собранные вручную</span>
-      <span>Шрифт Manrope, SIL Open Font License · Иконки Solar (480 Design), CC BY 4.0</span>
+      <span>Шрифт Manrope, SIL Open Font License · Иконки Solar (480 Design), CC BY 4.0 · GitHub — MDI, Apache-2.0</span>
     </div>
     <div class="stampwrap" aria-hidden="true">
       <svg class="stamp" viewBox="0 0 100 100">

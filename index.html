@@ -38,7 +38,7 @@
     color-scheme:light;
   }
 
-  *,*::before,*::after{box-sizing:border-box;}
+  *,*::before,*::after{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 
   html{-webkit-text-size-adjust:100%;}
 
@@ -2060,7 +2060,7 @@
     }, { passive: true });
 
     window.addEventListener('pointerdown', function(e){
-      if (reduce.matches) return;
+      if (reduce.matches || e.pointerType === 'touch') return;
       ripples.push({ x: e.clientX, y: e.clientY, r: 8, alpha: 1 });
       if (ripples.length > 5) ripples.shift();
     }, { passive: true });
